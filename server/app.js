@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 
 //Routers
 const userRouter = require("./src/routes/userRoute");
+const productRouter = require("./src/routes/poductRouter");
 
 const app = express();
 require("dotenv").config();
@@ -16,7 +17,7 @@ app.use(cors()); // This allows the use of CORS in app
 
 // Initialize collection endpoints
 app.use("/api/Users", userRouter);
-// app.use("/api/Products", productsRouter);
+app.use("/api/Products", productRouter);
 
 app.get("/", (req, res) => {
   res.send("E-Comerce Server Started!");
