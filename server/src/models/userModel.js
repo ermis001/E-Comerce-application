@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema(
   {
+    userId: { type: mongoose.ObjectId },
     userName: {
       type: String,
       required: true,
@@ -14,6 +15,10 @@ const userSchema = new mongoose.Schema(
       minLength: 5,
       maxLength: 40,
       unique: true,
+    },
+    userStatus: {
+      type: String,
+      required: true,
     },
     password: {
       type: String,
