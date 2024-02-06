@@ -1,0 +1,23 @@
+.customButton {
+  border: none;
+  border-radius: 0px;
+  background-color: #acacca;
+  color: #fff;
+  padding: 0px 10px;
+  &:hover {
+    color: #fff !important;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+.buttonBlue {
+  background-color: blue;
+  color: #fff;
+}
+
+.buttonRed {
+  background-color: red;
+  color: #fff;
+}

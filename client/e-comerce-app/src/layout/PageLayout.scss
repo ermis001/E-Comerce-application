@@ -1,0 +1,25 @@
+.page-layout {
+  height: 100vh;
+  height: 100dvh;
+  width: 100vw;
+  width: 100dvw;
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 20px;
+  }
+  .page-content {
+    height: calc(100% - 64px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    .page-content-container {
+      height: 100%;
+      width: 100%;
+      background-color: #f5f4ed;
+    }
+  }
+  .page-footer {
+    background-color: #d5d5d5;
+  }
+}

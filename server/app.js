@@ -6,29 +6,41 @@ const mongoose = require("mongoose");
 const userRouter = require("./src/routes/userRoute");
 const productRouter = require("./src/routes/poductRouter");
 
-const app = express();
 require("dotenv").config();
+const app = express();
 
 const port = process.env.PORT || 8000;
-const URI = process.env.ATLAS_URI;
+let URI = "";
+// changing URI endpoint based on env
+if (process.env.NODE_ENV === "production") {
+  URI = process.env.ATLAS_URI_PROD;
+} else if (process.env.NODE_ENV === "test") {
+  URI = process.env.ATLAS_URI_TEST;
+} else {
+  URI = process.env.ATLAS_URI_DEV;
+}
 
 app.use(express.json()); // This allows the use of JSON data in app
 app.use(cors()); // This allows the use of CORS in app
 
 // Initialize collection endpoints
-app.use("/api/Users", userRouter);
-app.use("/api/Products", productRouter);
+app.use(`/api/users`, userRouter);
+app.use(`/api/products`, productRouter);
 
 app.get("/", (req, res) => {
   res.send("E-Comerce Server Started!");
 });
 
-app.listen(port, (req, res) => {
-  console.log(`Server running in port ${port}`);
-});
+if (process.env.NODE_ENV !== "test") {
+  app.listen(port, (req, res) => {
+    console.log(`Server running in port ${port}`);
+  });
+}
 
 // Connecting to DB
 mongoose
   .connect(URI)
   .then(() => console.log("Connected to DB"))
   .catch((err) => console.log("Error connecting to DB: ", err));
+
+module.exports = app;

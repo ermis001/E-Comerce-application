@@ -63,7 +63,7 @@ async function getAllProducts(req, res) {
 }
 
 // Find Product
-async function findProduct(res, res) {
+async function findProduct(req, res) {
   const productId = req.params.productId;
   try {
     const product = await productModel.findOne({ productId });
