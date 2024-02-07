@@ -6,7 +6,7 @@ function PageHeader() {
   return (
     <Header className="page-header">
       <section style={{ color: "#fff" }}>E-Comerce</section>
-      <MainNavigationButtons />
+      <MainNavigationButtons />      
     </Header>
   );
 }

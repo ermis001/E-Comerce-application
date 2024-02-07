@@ -1,0 +1,20 @@
+@import "../../index.scss";
+
+.dynamic-modal {
+  .ant-modal-content {
+    background-color: $backgroundLight;
+    border-radius: 3px;
+    .ant-modal-header {
+      background-color: $backgroundLight;
+      .ant-modal-title {
+        font-size: 24px;
+        font-weight: 400;
+      }
+    }
+    .ant-modal-footer {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+  }
+}
