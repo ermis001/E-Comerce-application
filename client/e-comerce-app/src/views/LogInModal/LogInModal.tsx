@@ -1,7 +1,6 @@
 import { Form, Button, Input } from "antd";
 
-import DynamicModal from "../../components/DynamicModal/DynamicModal";
-// import DynamicModal from "@components/DynamicModal/DynamicModal";
+import DynamicModal from "@components/DynamicModal/DynamicModal";
 
 const { Item } = Form;
 
@@ -20,6 +19,9 @@ function LogInModal({ open, onCancel }: props) {
       title="Log In"
       footer={[
         <Button
+          type="primary"
+          size="large"
+          style={{ width: 150 }}
           onClick={() => console.log("formValues: ", form.getFieldsValue())}
         >
           Log In
@@ -34,6 +36,20 @@ function LogInModal({ open, onCancel }: props) {
           <Input placeholder="Password..." type="password" />
         </Item>
       </Form>
+      <section
+        style={{
+          height: "100%",
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        <Button type="link" style={{ color: "#292929" }}>
+          Forgotten Password
+        </Button>
+        <Button type="link" style={{ color: "#292929" }}>
+          Create Your Account
+        </Button>
+      </section>
     </DynamicModal>
   );
 }
