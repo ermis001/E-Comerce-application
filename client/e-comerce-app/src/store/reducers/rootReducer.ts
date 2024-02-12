@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-
+import { DarkModeSlice } from "./darkModeReducer";
 
 const store = configureStore({
     reducer: {
-      // darkMode: darkMode,
+      darkMode: DarkModeSlice.reducer,
     }
   })
 

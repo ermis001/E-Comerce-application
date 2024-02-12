@@ -1,0 +1,14 @@
+.signUpModal {
+  .ant-modal-footer {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    .ant-form {
+      width: fit-content;
+      .ant-form-item {
+        width: fit-content;
+        margin-bottom: 0px;
+      }
+    }
+  }
+}

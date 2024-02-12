@@ -8,18 +8,28 @@
     justify-content: space-between;
     align-items: center;
     padding: 0px 20px;
+    background-color: #f9f9f5;
+    // border-bottom: 1px solid #33322f;
+    box-shadow: 0px 3px 2px -3px #000;
+    transition: .3s ease-out;
+    z-index: 2;
+  }
+  .page-header-dark {
+    background-color: #33322f;
+    box-shadow: 0px 3px 2px -3px #f9f9f5;
   }
   .page-content {
     height: calc(100% - 64px);
     overflow-y: auto;
     overflow-x: hidden;
+    transition: .3s ease-out;
     .page-content-container {
       height: 100%;
       width: 100%;
-      background-color: #f5f4ed;
     }
   }
   .page-footer {
-    background-color: #d5d5d5;
+    // background-color: #d5d5d5;
+    transition: .3s ease-out;
   }
 }

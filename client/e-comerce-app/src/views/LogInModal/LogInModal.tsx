@@ -7,9 +7,10 @@ const { Item } = Form;
 type props = {
   open: boolean;
   onCancel: () => void;
+  setSignUp: () => void;
 };
 
-function LogInModal({ open, onCancel }: props) {
+function LogInModal({ open, onCancel, setSignUp }: props) {
   const [form] = Form.useForm();
 
   return (
@@ -43,10 +44,8 @@ function LogInModal({ open, onCancel }: props) {
           justifyContent: "space-between",
         }}
       >
-        <Button type="link" style={{ color: "#292929" }}>
-          Forgotten Password
-        </Button>
-        <Button type="link" style={{ color: "#292929" }}>
+        <Button type="link">Forgotten Password</Button>
+        <Button type="link" onClick={setSignUp}>
           Create Your Account
         </Button>
       </section>

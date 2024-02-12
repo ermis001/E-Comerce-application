@@ -30,7 +30,8 @@
       "@hooks/*": ["./src/hooks/*"],
       "@style/*": ["./src/style/*"],
       "@utils/*": ["./src/utils/*"],
-      "@views/*": ["./src/views/*"]
+      "@views/*": ["./src/views/*"],
+      "@store/*": ["./src/store/*"],
     }
   },
   "include": ["src"],
