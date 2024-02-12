@@ -1,0 +1,1 @@
+export {default as addRecord} from "./apiFunctions/addRecord";

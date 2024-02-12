@@ -2,8 +2,9 @@ import { Button, Form, Input } from "antd";
 import DynamicModal from "@src/components/DynamicModal/DynamicModal";
 
 import "./SingUpModal.scss";
-import axios from "axios";
-import API_URL from "@src/api/config";
+// import axios from "axios";
+// import API_URL from "@src/api/config";
+import { addRecord } from "@src/api";
 
 type props = {
   open: boolean;
@@ -22,26 +23,31 @@ function SingUpModal({ open, onCancel }: props) {
     ["confirm-password"]: string;
   };
 
-  function addUser({ userData }: any) {
-    axios
-      .post(`${API_URL}/users`, {
-        ...userData,
-      })
-      .then((res) => console.log("res: ", res))
-      .catch((error) => console.log("Error posting user: ", error));
-  }
+  // async function addUser({ userData }: any) {
+  //   axios.post(`${API_URL}/users/register`, {
+  //     ...userData,
+  //   });
+  // }
 
   function onFinish(formData: any) {
-    console.log("formData: ", formData);
-
-    addUser({
-      userData: {
-        userName: formData.userName,
-        email: formData.email,
-        password: formData.password,
-        status: "member",
-      },
-    });
+    addRecord({tableName: "users", data: {
+      userName: formData.userName,
+      email: formData.email,
+      password: formData.password,
+      userStatus: "member",
+    }})
+    // addUser({
+    //   userData: {
+    //     userName: formData.userName,
+    //     email: formData.email,
+    //     password: formData.password,
+    //     userStatus: "member",
+    //   },
+    // }).then(res => {
+    //   console.log("user registered: ", res);
+    //   // Log in user with the added data than close modal
+    //   onCancel()
+    // });
   }
 
   return (
@@ -54,16 +60,16 @@ function SingUpModal({ open, onCancel }: props) {
         <Button danger type="primary" onClick={onCancel} size="large">
           Cancel
         </Button>,
-        <Form form={form}>
+        <Form form={form} onFinish={onFinish}>
           <Item>
-            <Button type="primary" htmlType={"submit"} size="large">
+            <Button type="primary" htmlType="submit" size="large">
               Sign Up
             </Button>
           </Item>
         </Form>,
       ]}
     >
-      <Form form={form} onFinish={onFinish}>
+      <Form form={form}>
         <Item<FieldTypes>
           name={"userName"}
           rules={[{ required: true, message: "Please input your user name!" }]}
