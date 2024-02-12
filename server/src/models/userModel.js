@@ -18,6 +18,7 @@ const userSchema = new mongoose.Schema(
     },
     userStatus: {
       type: String,
+      default: "member",
       required: true,
     },
     password: {

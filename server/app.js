@@ -24,8 +24,8 @@ app.use(express.json()); // This allows the use of JSON data in app
 app.use(cors()); // This allows the use of CORS in app
 
 // Initialize collection endpoints
-app.use(`/api/users`, userRouter);
-app.use(`/api/products`, productRouter);
+app.use(`/users`, userRouter);
+app.use(`/products`, productRouter);
 
 app.get("/", (req, res) => {
   res.send("E-Comerce Server Started!");

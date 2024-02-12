@@ -17,12 +17,12 @@ async function addProduct(req, res) {
       }
     }
     if (!!duplicatedProduct) {
-      res.status(400).json("This Product already exists!");
+      res.status(400).send("This Product already exists!");
     }
     if (!!missingFields.length) {
       res
         .status(400)
-        .json(`Product fields are required, ${missingFields.join(" ,")}`);
+        .send(`Product fields are required, ${missingFields.join(" ,")}`);
     }
 
     const product = new productModel(productData);
@@ -30,10 +30,10 @@ async function addProduct(req, res) {
 
     await product.save();
 
-    res.status(200).json(product);
+    res.status(200).send(product);
   } catch (error) {
     console.log("Adding Product Error: ", error);
-    res.status(500).json("Error Adding new Product: ", error);
+    res.status(500).send("Error Adding new Product: ", error);
   }
 }
 
@@ -44,10 +44,10 @@ async function deleteProduct(req, res) {
 
     await productModel.deleteOne({ productId });
 
-    res.status(200).json("Product deleted successfully!");
+    res.status(200).send("Product deleted successfully!");
   } catch (error) {
     console.log("Error Deleting Product: ", error);
-    res.status(500).json("Error Deleting Product: ", error);
+    res.status(500).send("Error Deleting Product: ", error);
   }
 }
 
@@ -55,10 +55,10 @@ async function deleteProduct(req, res) {
 async function getAllProducts(req, res) {
   try {
     const products = await productModel.find();
-    res.status(200).json(products);
+    res.status(200).send(products);
   } catch (error) {
     console.log("Error getting Products: ", error);
-    res.status(500).json("Error getting Products: ", error);
+    res.status(500).send("Error getting Products: ", error);
   }
 }
 
@@ -68,12 +68,12 @@ async function findProduct(req, res) {
   try {
     const product = await productModel.findOne({ productId });
     if (!product) {
-      res.status(404).json("Product not found");
+      res.status(404).send("Product not found");
     }
-    res.status(200).json({ product });
+    res.status(200).send({ product });
   } catch (error) {
     console.log("Error finding Product: ", error);
-    res.status(500).json();
+    res.status(500).send();
   }
 }
 
