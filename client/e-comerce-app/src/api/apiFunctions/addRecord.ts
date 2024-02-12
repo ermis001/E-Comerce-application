@@ -7,7 +7,7 @@ type props = {
 };
 
 async function addRecords({ tableName, data }: props) {
-  axios.post(`${API_URL}/${tableName}/register`, data)
+  return axios.post(`${API_URL}/${tableName}/register`, data)
 }
 
 export default addRecords;

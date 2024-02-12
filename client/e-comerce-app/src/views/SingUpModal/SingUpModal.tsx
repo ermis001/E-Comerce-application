@@ -1,10 +1,9 @@
 import { Button, Form, Input } from "antd";
+
 import DynamicModal from "@src/components/DynamicModal/DynamicModal";
+import { addRecord } from "@src/api";
 
 import "./SingUpModal.scss";
-// import axios from "axios";
-// import API_URL from "@src/api/config";
-import { addRecord } from "@src/api";
 
 type props = {
   open: boolean;
@@ -23,31 +22,20 @@ function SingUpModal({ open, onCancel }: props) {
     ["confirm-password"]: string;
   };
 
-  // async function addUser({ userData }: any) {
-  //   axios.post(`${API_URL}/users/register`, {
-  //     ...userData,
-  //   });
-  // }
-
   function onFinish(formData: any) {
-    addRecord({tableName: "users", data: {
-      userName: formData.userName,
-      email: formData.email,
-      password: formData.password,
-      userStatus: "member",
-    }})
-    // addUser({
-    //   userData: {
-    //     userName: formData.userName,
-    //     email: formData.email,
-    //     password: formData.password,
-    //     userStatus: "member",
-    //   },
-    // }).then(res => {
-    //   console.log("user registered: ", res);
-    //   // Log in user with the added data than close modal
-    //   onCancel()
-    // });
+    addRecord({
+      tableName: "users",
+      data: {
+        userName: formData.userName,
+        email: formData.email,
+        password: formData.password,
+        userStatus: "member",
+      },
+    }).then((res) => {
+      console.log("user registered: ", res);
+      // Log in user with the added data than close modal
+      onCancel();
+    });
   }
 
   return (
