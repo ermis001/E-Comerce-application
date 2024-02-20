@@ -1,31 +1,18 @@
 import { Layout } from "antd";
 import { Content } from "antd/es/layout/layout";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
-import Home from "@views/Home/Home";
-import CategoryPage from "@views/CategoryPage/CategoryPage";
-import SubCategoryPage from "@views/SubCategoryPage/SubCategoryPage";
 import PageFooter from "../footer/PageFooter";
+import Routes from "@components/routes/Routes";
+import DashboardSidebar from "@components/DashboardSidebar/DashboardSidebar";
 
 function PageContent() {
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Home />,
-    },
-    {
-      path: "/:category",
-      element: <CategoryPage />,
-    },
-    {
-      path: "/:category/:subCategory",
-      element: <SubCategoryPage />,
-    },
-  ]);
   return (
     <Layout className="page-content">
+      {window.location.pathname.includes("dashboard") ? (
+        <DashboardSidebar />
+      ) : null}
       <Content className="page-content-container">
-        <RouterProvider router={router} />
+        <Routes />
       </Content>
       <PageFooter />
     </Layout>

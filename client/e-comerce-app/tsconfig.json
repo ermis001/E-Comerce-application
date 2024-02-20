@@ -34,6 +34,6 @@
       "@store/*": ["./src/store/*"],
     }
   },
-  "include": ["src"],
+  "include": ["src", "./src/utils/svgType.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

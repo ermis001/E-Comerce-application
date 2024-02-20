@@ -3,7 +3,6 @@ import { Form, Button, Input } from "antd";
 import DynamicModal from "@components/DynamicModal/DynamicModal";
 import { loginUser } from "@src/api";
 import { setUserConfig } from "@store/reducers/userConfigReducer";
-import { setAccessToken } from "@store/reducers/accessTokenReducer";
 import { useAppDispatch } from "@hooks/reduxHooks";
 
 const { Item } = Form;
@@ -23,7 +22,6 @@ function LogInModal({ open, onCancel, setSignUp }: props) {
       const result = await loginUser(formData);
 
       localStorage.setItem("authToken", result.data.token);
-      dispatch(setAccessToken(result.data.token));
       dispatch(setUserConfig(result.data.user));
     } catch (error) {
       console.log("Error login: ", error);

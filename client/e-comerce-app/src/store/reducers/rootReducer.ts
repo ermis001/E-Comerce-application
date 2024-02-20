@@ -1,13 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { DarkModeSlice } from "./darkModeReducer";
 import { UserConfigSlice } from "./userConfigReducer";
-import { AccessTokenSlice } from "./accessTokenReducer";
 
 const store = configureStore({
   reducer: {
     darkMode: DarkModeSlice.reducer,
     userConfig: UserConfigSlice.reducer,
-    accessToken: AccessTokenSlice.reducer,
   }
 })
 

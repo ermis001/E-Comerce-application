@@ -1,7 +1,14 @@
 import { useState } from "react";
 import { Button } from "antd";
+import {
+  MoonOutlined,
+  SearchOutlined,
+  ShoppingCartOutlined,
+  SunOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
 
-import { useAppDispatch } from "@hooks/reduxHooks";
+import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
 import { toggleDarkMode } from "@store/reducers/darkModeReducer";
 import LogInModal from "@views/LogInModal/LogInModal";
 import SingUpModal from "@views/SingUpModal/SingUpModal";
@@ -9,6 +16,7 @@ import SingUpModal from "@views/SingUpModal/SingUpModal";
 import "./MainNavigationButtons.scss";
 
 function MainNavigationButtons() {
+  const darkMode = useAppSelector((state) => state.darkMode);
   const [userModal, setUserModal] = useState("");
 
   const dispatch = useAppDispatch();
@@ -23,13 +31,17 @@ function MainNavigationButtons() {
 
   return (
     <nav className="main-navigation-buttons">
-      <Button type="primary">Search</Button>
-      <Button type="primary" onClick={() => setUserModal("login")}>
-        User
+      <Button type="primary">
+        <SearchOutlined />
       </Button>
-      <Button type="primary">Cart</Button>
+      <Button type="primary" onClick={() => setUserModal("login")}>
+        <UserOutlined />
+      </Button>
+      <Button type="primary">
+        <ShoppingCartOutlined />
+      </Button>
       <Button type="primary" onClick={toggle}>
-        DarkMode
+        {darkMode ? <SunOutlined /> : <MoonOutlined />}
       </Button>
       {userModal === "login" && (
         <LogInModal
