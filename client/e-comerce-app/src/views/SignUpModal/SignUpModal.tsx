@@ -3,7 +3,7 @@ import { Button, Form, Input } from "antd";
 import DynamicModal from "@src/components/DynamicModal/DynamicModal";
 import { addRecord } from "@src/api";
 
-import "./SingUpModal.scss";
+import "./SignUpModal.scss";
 
 type props = {
   open: boolean;
@@ -12,7 +12,7 @@ type props = {
 
 const { Item } = Form;
 
-function SingUpModal({ open, onCancel }: props) {
+function SignUpModal({ open, onCancel }: props) {
   const [form] = Form.useForm();
 
   type FieldTypes = {
@@ -105,4 +105,4 @@ function SingUpModal({ open, onCancel }: props) {
   );
 }
 
-export default SingUpModal;
+export default SignUpModal;

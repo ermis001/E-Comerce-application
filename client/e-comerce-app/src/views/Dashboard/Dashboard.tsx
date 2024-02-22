@@ -1,12 +1,6 @@
-import { Layout } from "antd";
-import { Content } from "antd/es/layout/layout";
 
 function Dashboard() {
-  return (
-    <Layout>
-      <Content>cimi</Content>
-    </Layout>
-  );
+  return <div>Dashboard</div>;
 }
 
 export default Dashboard;

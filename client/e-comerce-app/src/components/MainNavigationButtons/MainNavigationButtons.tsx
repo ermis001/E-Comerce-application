@@ -11,7 +11,7 @@ import {
 import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
 import { toggleDarkMode } from "@store/reducers/darkModeReducer";
 import LogInModal from "@views/LogInModal/LogInModal";
-import SingUpModal from "@views/SingUpModal/SingUpModal";
+import SingUpModal from "@src/views/SignUpModal/SignUpModal";
 
 import "./MainNavigationButtons.scss";
 
