@@ -53,9 +53,17 @@ async function deleteProduct(req, res) {
 
 // Get All Products
 async function getAllProducts(req, res) {
+  const filterData = req.query;
   try {
-    const products = await productModel.find();
-    res.status(200).send(products);
+    if (!!Object.keys(filterData).length) {
+      const { filterKey, filterValue } = filterData;
+      const products = await productModel.find({ [filterKey]: filterValue });
+
+      res.status(200).send(products);
+    } else {
+      const products = await productModel.find();
+      res.status(200).send(products);
+    }
   } catch (error) {
     console.log("Error getting Products: ", error);
     res.status(500).send("Error getting Products: ", error);

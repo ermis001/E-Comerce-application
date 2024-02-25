@@ -27,6 +27,10 @@ const userSchema = new mongoose.Schema(
       minLength: 6,
       maxLength: 100,
     },
+    isPrivate: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );

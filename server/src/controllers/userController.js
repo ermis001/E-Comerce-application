@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 function createToken(id) {
   const jwtKey = process.env.JWT_SECRET_KEY;
 
-  return jwt.sign({ _id: id }, jwtKey, { expiresIn: "3d" });
+  return jwt.sign({ _id: id }, jwtKey, { expiresIn: "5h" });
 }
 
 // User Registration
@@ -91,9 +91,21 @@ async function loginUser(req, res) {
 
 // Get List Of Users
 async function getAllUsers(req, res) {
+  const filterData = req.query;
+
   try {
-    const users = await userModel.find();
-    res.status(200).send(users);
+    if (!!Object.keys(filterData)?.length) {
+      const { filterKey, filterValue } = filterData;
+      const users = await userModel.find({
+        [filterKey]: filterValue,
+        isPrivate: false,
+      });
+
+      res.status(200).send(users);
+    } else {
+      const users = await userModel.find({ isPrivate: false });
+      res.status(200).send(users);
+    }
   } catch (error) {
     console.log("Error getting Users: ", error);
     res.status(500).send(error);
