@@ -1,4 +1,6 @@
+import dayjs from "dayjs";
 import type { ColumnsType } from "antd/es/table";
+
 import type { userInterface } from "@src/interfaces";
 
 export const tableColumns: ColumnsType<userInterface> = [
@@ -20,6 +22,10 @@ export const tableColumns: ColumnsType<userInterface> = [
   {
     title: "Created At",
     dataIndex: "createdAt",
-    key: "createdAt"
+    key: "createdAt",
+    render: (data) => {
+      console.log("data: ", data);
+      return dayjs(data).format("DD/MM/YYYY hh:mm A");
+    }
   },
 ];

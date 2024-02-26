@@ -1,7 +1,7 @@
 import axios from "axios";
 import API_URL from "./config";
 
-type props = {
+type fetchProps = {
   tableName: string;
   filterKey?: string;
   filterValue?: any;
@@ -15,10 +15,14 @@ type props = {
  * @param filterValue Value to filter data 
  * @returns 
  */
-async function fetchData({ tableName, filterKey, filterValue }: props) {
+async function fetchData({ tableName, filterKey, filterValue }: fetchProps) {
   if (filterValue && filterKey) {
-    // get filtered data from tableName 
-    return await axios.get(`${API_URL}/${tableName}`)
+    return await axios.get(`${API_URL}/${tableName}`, {
+      params: {
+        filterKey,
+        filterValue
+      }
+    })
   }
   return await axios.get(`${API_URL}/${tableName}`)
 }

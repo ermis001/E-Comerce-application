@@ -9,7 +9,7 @@ const Users = lazy(() => import("@views/Users/Users"));
 
 function DashboardRoutes() {
   return (
-    <Layout>
+    <Layout style={{height: "100%"}}>
       <DashboardSidebar />
       <Routes>
         <Route path="/" element={<Dashboard />} />
