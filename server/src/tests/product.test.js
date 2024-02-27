@@ -20,7 +20,7 @@ describe("GET /api/products", function () {
   });
 
   test("Should return all products", async function () {
-    const res = await request(app).get("/api/products");
+    const res = await request(app).get("/products");
 
     expect(res.statusCode).toBe(200);
     // expect(res.body.length).toBeGreaterThan(0);

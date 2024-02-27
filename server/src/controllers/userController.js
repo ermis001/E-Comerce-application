@@ -2,6 +2,7 @@ const userModel = require("../models/userModel");
 const bcrypt = require("bcrypt");
 const validator = require("validator");
 const jwt = require("jsonwebtoken");
+const { v4: uuidv4 } = require("uuid");
 
 function createToken(id) {
   const jwtKey = process.env.JWT_SECRET_KEY;
@@ -19,21 +20,25 @@ async function registerUser(req, res) {
       res
         .status(400)
         .send({ error: "User with the given email already exists!" });
+      return;
     }
     if (!userName || !email || !password) {
       res.status(400).send({ error: "Please fill all the fields." });
+      return;
     }
     if (!validator.isEmail(email)) {
       res.status(400).send({ error: "Please add a valid Email." });
+      return;
     }
     if (!validator.isStrongPassword(password)) {
       res.status(400).send({
         error:
           "Password must contain one upper case letter one number and one special character.",
       });
+      return;
     }
 
-    let user = new userModel({ userName, email, password });
+    let user = new userModel({ userName, email, password, userId: uuidv4() });
 
     const salt = await bcrypt.genSalt(12);
     user.password = await bcrypt.hash(user.password, salt);
