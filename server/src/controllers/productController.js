@@ -1,3 +1,5 @@
+const { v4: uuidv4 } = require("uuid");
+
 const productModel = require("../models/productModel");
 const { camelCaseToTitleCase } = require("../services/index");
 
@@ -7,7 +9,7 @@ async function addProduct(req, res) {
     const productData = req.body;
 
     const duplicatedProduct = await productModel.findOne({
-      productName: product.productName,
+      productName: productData.productName,
     });
     let missingFields = [];
     for (let i = 0; i < Object.keys(productData).length; i++) {
@@ -26,7 +28,7 @@ async function addProduct(req, res) {
     }
 
     const product = new productModel(productData);
-    product.productId = product._id;
+    product.productId = uuidv4();
 
     await product.save();
 
@@ -78,7 +80,7 @@ async function findProduct(req, res) {
     if (!product) {
       res.status(404).send("Product not found");
     }
-    res.status(200).send({ product });
+    res.status(200).send(product);
   } catch (error) {
     console.log("Error finding Product: ", error);
     res.status(500).send();

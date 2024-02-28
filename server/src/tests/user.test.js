@@ -50,18 +50,19 @@ describe("GET /api/users", () => {
 
   test("Should log in user", async function () {
     const res = await request(app).post("/users/login").send({
-      userName: "Cimi",
       email: "cimi@email.com",
       password: "Cimi123!",
     });
 
     expect(res.statusCode).toBe(200);
+    expect(res.body.user.email).toBe("cimi@email.com");
   });
 
   test("Should find in user by id", async function () {
     const res = await request(app).get(`/users/find/${cimiUserId}`);
-    
+
     expect(res.statusCode).toBe(200);
+    expect(res.body.userId).toBe(cimiUserId);
   });
 
   test("Should delete user", async function () {
