@@ -1,4 +1,4 @@
-interface userInterface {
+export interface userInterface {
   userName: string,
   email: string,
   userStatus: string,
@@ -8,4 +8,4 @@ interface userInterface {
   updatedAt: string,
 }
 
-export default userInterface;
+// export default userInterface;

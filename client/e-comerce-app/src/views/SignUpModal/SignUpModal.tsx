@@ -1,7 +1,7 @@
 import { Button, Form, Input } from "antd";
 
-import DynamicModal from "@src/components/DynamicModal/DynamicModal";
-import { addRecord } from "@src/api";
+import DynamicModal from "@components/DynamicModal/DynamicModal";
+import { addRecord } from "@api/index";
 
 import "./SignUpModal.scss";
 

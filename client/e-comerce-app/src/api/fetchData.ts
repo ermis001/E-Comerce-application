@@ -18,13 +18,20 @@ type fetchProps = {
 async function fetchData({ tableName, filterKey, filterValue }: fetchProps) {
   if (filterValue && filterKey) {
     return await axios.get(`${API_URL}/${tableName}`, {
+      headers: {
+        "Authorization": `Bearer${localStorage.getItem("authToken")}`
+      },
       params: {
         filterKey,
         filterValue
       }
     })
   }
-  return await axios.get(`${API_URL}/${tableName}`)
+  return await axios.get(`${API_URL}/${tableName}`, {
+    headers: {
+      "Authorization": `Bearer${localStorage.getItem("authToken")}`
+    },
+  })
 }
 
 export default fetchData;

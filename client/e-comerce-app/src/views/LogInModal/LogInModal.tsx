@@ -1,19 +1,21 @@
 import { Form, Button, Input } from "antd";
+import axios from "axios";
 
 import DynamicModal from "@components/DynamicModal/DynamicModal";
-import { loginUser } from "@src/api";
+import API_URL from "@api/config";
+import { loginUser } from "@api/index";
 import { setUserConfig } from "@store/reducers/userConfigReducer";
 import { useAppDispatch } from "@hooks/reduxHooks";
 
 const { Item } = Form;
 
-type props = {
+type params = {
   open: boolean;
   onCancel: () => void;
   setSignUp: () => void;
 };
 
-function LogInModal({ open, onCancel, setSignUp }: props) {
+function LogInModal({ open, onCancel, setSignUp }: params) {
   const dispatch = useAppDispatch();
   const [form] = Form.useForm();
 
@@ -21,8 +23,18 @@ function LogInModal({ open, onCancel, setSignUp }: props) {
     try {
       const result = await loginUser(formData);
 
-      localStorage.setItem("authToken", result.data.token);
-      dispatch(setUserConfig(result.data.user));
+      axios
+        .get(`${API_URL}`, {
+          headers: {
+            Authorization: "Bearer" + result.data.token,
+          },
+        })
+        .then((response) => {
+          console.log("Auth response: ", response);
+          localStorage.setItem("authToken", result.data.token);
+          dispatch(setUserConfig(result.data.user));
+        })
+        .catch((err) => console.log("Error auth: ", err));
     } catch (error) {
       console.log("Error login: ", error);
     }
