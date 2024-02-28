@@ -1,12 +1,12 @@
 import { lazy } from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
-import { useAppSelector } from "@src/hooks/reduxHooks";
+import { useAppSelector } from "@hooks/reduxHooks";
 
 import MainRoutes from "./MainRoutes";
 import DashboardRoutes from "./DashboardRoutes";
 
-const Home = lazy(() => import("@src/views/Home/Home"));
+const Home = lazy(() => import("@views/Home/Home"));
 
 function Routes() {
   const userConfig = useAppSelector((state) => state.userConfig);

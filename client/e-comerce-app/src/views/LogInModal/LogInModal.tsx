@@ -43,7 +43,6 @@ function LogInModal({ open, onCancel, setSignUp }: props) {
           >
             Log In
           </Button>
-          ,
         </Form>,
       ]}
     >
