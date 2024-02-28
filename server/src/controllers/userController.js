@@ -56,6 +56,30 @@ async function registerUser(req, res) {
 
 // User Deletion
 async function deleteUser(req, res) {
+  const jwtKey = process.env.JWT_SECRET_KEY;
+  const authToken =
+    req.headers.authorization && req.headers.authorization.slice(6);
+
+  if (!authToken) {
+    res.status(500).send("Missing Authentication token");
+    return;
+  }
+
+  const tokenVerification = jwt.verify(authToken, jwtKey);
+  const expired = Math.floor(Date.now() / 1000) > tokenVerification.exp;
+
+  if (expired) {
+    res.status(400).send("Authentication token has expired");
+    return;
+  }
+
+  const authUser = await userModel.findById(tokenVerification._id);
+
+  if (authUser !== "owner") {
+    res.status(500).send("This user does not have access for this action");
+    return;
+  }
+
   try {
     const userId = req.params.userId;
 
@@ -96,7 +120,32 @@ async function loginUser(req, res) {
 
 // Get List Of Users
 async function getAllUsers(req, res) {
+  const jwtKey = process.env.JWT_SECRET_KEY;
   const filterData = req.query;
+  const authToken =
+    req?.headers?.authorization &&
+    req.headers.authorization.slice(6, req.headers.authorization.length);
+
+  if (!authToken) {
+    res.status(500).send("Missing Authentication Token!");
+    return;
+  }
+
+  const tokenVerification = jwt.verify(authToken, jwtKey);
+  // Token verification result { _id: '65ca7c3601926a95b3bbf858', iat: 1709152441, exp: 1709170441 }
+  const expired = Math.floor(Date.now() / 1000) > tokenVerification.exp;
+
+  if (expired) {
+    res.status(500).send("Authentication Token have expired");
+    return;
+  }
+
+  // const authUser = await userModel.findById(tokenVerification._id);
+
+  // if (authUser.userStatus === "member") {
+  //   req.status(400).send("This user does not have access for this data");
+  //   return;
+  // }
 
   try {
     if (!!Object.keys(filterData)?.length) {
