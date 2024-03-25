@@ -1,6 +1,8 @@
+import Loading from "@components/Loading/Loading";
 
 function Dashboard() {
-  return <div>Dashboard</div>;
+  return <Loading /> 
+  // <div>Dashboard</div>;
 }
 
 export default Dashboard;

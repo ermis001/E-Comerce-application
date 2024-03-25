@@ -2,14 +2,18 @@ import { Menu } from "antd";
 import { useNavigate } from "react-router-dom";
 import Sider from "antd/es/layout/Sider";
 
-import { useAppSelector } from "@src/hooks/reduxHooks";
+import { useAppSelector } from "@hooks/reduxHooks";
+
+import "./DashboardSidebar.scss";
 
 function DashboardSidebar() {
   const darkMode = useAppSelector((state) => state.darkMode);
   const navigate = useNavigate();
 
   return (
-    <Sider>
+    <Sider
+      className={`dashboard-sidebar ${darkMode && "dashboard-sidebar-dark"}`}
+    >
       <Menu
         theme={darkMode ? "dark" : "light"}
         inlineCollapsed={true}

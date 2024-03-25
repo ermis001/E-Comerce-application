@@ -17,6 +17,7 @@ export default defineConfig({
       "@views": "/src/views",
       "@store": "/src/store",
       "@interfaces": "/src/interfaces",
+      "@routes": "/src/routes",
     }
   }
 })

@@ -33,6 +33,7 @@
       "@views/*": ["./src/views/*"],
       "@store/*": ["./src/store/*"],
       "@interfaces/*": ["./src/interfaces/*"],
+      "@routes/*": ["./src/routes/*"],
     }
   },
   "include": ["src", "./src/utils/svgType.d.ts"],

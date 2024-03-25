@@ -7,7 +7,8 @@ type props = {
 }
 
 async function loginUser({ email, password }: props) {
-  return axios.post(`${API_URL}/users/login`, { email, password })
+  // return axios.post(`${API_URL}/users/login`, { email, password })
+  return axios.post(`${API_URL}/auth/login`, { email, password })
 }
 
 export default loginUser;

@@ -1,10 +1,11 @@
-import { lazy } from "react";
+import { Suspense, lazy } from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import { useAppSelector } from "@hooks/reduxHooks";
 
 import MainRoutes from "./MainRoutes";
 import DashboardRoutes from "./DashboardRoutes";
+import Loading from "@components/Loading/Loading";
 
 const Home = lazy(() => import("@views/Home/Home"));
 
@@ -26,7 +27,11 @@ function Routes() {
         element: <DashboardRoutes />,
       },
     ]);
-    return <RouterProvider router={router} />;
+    return (
+      <Suspense fallback={<Loading />}>
+        <RouterProvider router={router} />
+      </Suspense>
+    );
   } else {
     const router = createBrowserRouter([
       {
@@ -42,7 +47,11 @@ function Routes() {
         element: <DashboardRoutes />,
       },
     ]);
-    return <RouterProvider router={router} />;
+    return (
+      <Suspense fallback={<Loading />}>
+        <RouterProvider router={router} />
+      </Suspense>
+    );
   }
 }
 

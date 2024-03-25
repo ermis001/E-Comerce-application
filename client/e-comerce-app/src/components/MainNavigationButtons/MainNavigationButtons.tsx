@@ -8,21 +8,21 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 
-import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
-import { toggleDarkMode } from "@store/reducers/darkModeReducer";
 import LogInModal from "@views/LogInModal/LogInModal";
-import SingUpModal from "@src/views/SignUpModal/SignUpModal";
+import SingUpModal from "@views/SignUpModal/SignUpModal";
+import stylingVariablesToggle from "@utils/stylingVariablesToggle";
+import { darkModeAtom } from "@store/atoms";
+import { useAtom } from "@store/customJotai/jotai";
 
 import "./MainNavigationButtons.scss";
 
 function MainNavigationButtons() {
-  const darkMode = useAppSelector((state) => state.darkMode);
+  const [darkMode, setDarkMode] = useAtom(darkModeAtom);
   const [userModal, setUserModal] = useState("");
 
-  const dispatch = useAppDispatch();
-
   function toggle() {
-    dispatch(toggleDarkMode());
+    setDarkMode(!darkMode);
+    stylingVariablesToggle(darkMode);
   }
 
   function setSignUp() {

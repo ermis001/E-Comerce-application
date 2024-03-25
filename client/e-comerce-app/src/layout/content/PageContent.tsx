@@ -2,7 +2,7 @@ import { Layout } from "antd";
 import { Content } from "antd/es/layout/layout";
 
 import PageFooter from "../footer/PageFooter";
-import Routes from "@src/routes/Routes";
+import Routes from "@routes/Routes";
 
 function PageContent() {
   return (

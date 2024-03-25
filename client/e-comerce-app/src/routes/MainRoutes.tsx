@@ -10,7 +10,7 @@ const SubCategoryPage = lazy(
 
 function MainRoutes() {
   return (
-    <Layout>
+    <Layout style={{border: "1px solid red"}}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/:category" element={<CategoryPage />} />
